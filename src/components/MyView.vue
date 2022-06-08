@@ -16,7 +16,7 @@
                     <template v-slot:default>
                         <thead>
                             <tr>
-                                <th class="text-left">
+                                <th>
                                     Name
                                 </th>
                                 <th>
@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="item in tableArray" :key="item.getName()">
+                            <tr v-for="item in tableArray" :key="item.getName()" style="text-align:center">
                                 <td>{{ item.getName() }}</td>
                                 <td>{{ item.getPracticeOvers() }}</td>
                                 <td>{{ item.getCompetitionOvers() }}</td>
@@ -55,13 +55,13 @@
         },
         methods: {
             addToArray() {
-                console.log(this.nameValue);
-                console.log(this.competitionOversValue);
-                console.log(this.practiceOversValue);
                 if (this.validate())
                 {
                     let arrayToAdd = new OversArray(this.nameValue, this.practiceOversValue, this.competitionOversValue);
                     this.tableArray.push(arrayToAdd);
+                    this.nameValue = "";
+                    this.practiceOversValue = "";
+                    this.competitionOversValue = "";
                 }
             },
             validate()
